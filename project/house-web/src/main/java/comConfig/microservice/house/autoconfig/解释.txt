@@ -1,0 +1,47 @@
+现在修改包名
+原本包名com.microservice.house.autoconfig
+修改成comConfig.microservice.house.autoconfig
+
+接下来会报错，找不到Bean
+解决：
+    需要在resource中操作
+        1：文件下创建文件夹META-INF
+        2：创建文件spring.factories
+        3：配置
+            org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+            comConfig.microservice.house.autoconfig.HttpClientAutoConfiguration
+
+第二种解决办法：(自定义Enable)
+第一步comConfig.microservice.house.autoconfig下面创建EnableHttpClient接口
+    package comConfig.microservice.house.autoconfig;
+
+    import org.springframework.context.annotation.Import;
+
+    import java.lang.annotation.ElementType;
+    import java.lang.annotation.Retention;
+    import java.lang.annotation.RetentionPolicy;
+    import java.lang.annotation.Target;
+
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Import(HttpClientAutoConfiguration.class)
+    public @interface EnableHttpClient {
+
+    }
+第二步：启动类添加注解@EnableHttpClient（自定义的Enable）
+        package com.microservice.house;
+
+        import comConfig.microservice.house.autoconfig.EnableHttpClient;
+        import org.springframework.boot.SpringApplication;
+        import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+        @SpringBootApplication
+        @EnableHttpClient
+        public class HouseApplication {
+
+            public static void main(String[] args) {
+                SpringApplication.run(HouseApplication.class, args);
+            }
+
+        }
+

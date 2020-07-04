@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+   <settings>
+       <!--配置关闭缓存，设置为false-->
+       <setting name="cacheEnabled" value="false"/>
+       <!--启动自动转换成驼峰式命名-->
+       <!--https://blog.csdn.net/yangping227/article/details/88970797此配置有坑-->
+       <setting name="mapUnderscoreToCamelCase" value="true"/>
+       <!--允许 JDBC 支持自动生成主键，并可将自动生成的主键返回-->
+       <setting name="useGeneratedKeys" value="true"/>
+       <!--缓存，提高性能-->
+       <!--配置默认的执行器。SIMPLE 执行器没有什么特别之处。REUSE 执行器重用预处理语句。BATCH 执行器重用语句和批量更新-->
+       <setting name="defaultExecutorType" value="REUSE"/>
+       <!--设置事务超时时间-->
+       <setting name="defaultStatementTimeout" value="600"/>
+   </settings>
+
+    <typeAliases>
+        <!--设置别名，User就可以不用输入很长的一串，直接输入user-->
+        <typeAlias type="com.microservice.house.common.model.User" alias="user"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="mapper/user.xml"/>
+    </mappers>
+</configuration>

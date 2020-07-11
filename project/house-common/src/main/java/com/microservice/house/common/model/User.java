@@ -1,22 +1,45 @@
 package com.microservice.house.common.model;
 
 
+import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
+
+@Data
 public class User {
 
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
+    private String email;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String phone;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                '}';
-    }
+    private String name;
+
+    private String passwd;
+
+    private String confirmPasswd;
+
+    private Integer type;//普通用户1，经纪人2
+
+    private Date createTime;
+
+    private Integer enable;
+
+    private String  avatar;
+
+    private MultipartFile avatarFile;
+
+    private String newPassword;
+
+    private String key;
+
+    private Long   agencyId;
+
+    private String aboutme;
+
+    private String agencyName;
+
+
 }

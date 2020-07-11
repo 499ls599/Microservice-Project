@@ -30,5 +30,4 @@ public class FilterBeanConfig {
         filterRegistrationBean.setUrlPatterns(urlList);
         return filterRegistrationBean;
     }
-
 }

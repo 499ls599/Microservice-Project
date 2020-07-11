@@ -32,8 +32,9 @@ public class DruidConfig {
         return statFilter;
     }
 
+    //TODO   健康之心开启会导致找不到-httpservlet
     //添加监控，可以分析Mysql的执行时间，执行时间的分布
-    /*@Bean
+   /* @Bean
     public ServletRegistrationBean servletRegistrationBean(){
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         return servletRegistrationBean;

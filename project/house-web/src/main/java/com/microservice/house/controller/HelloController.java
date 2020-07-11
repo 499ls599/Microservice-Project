@@ -20,6 +20,11 @@ public class HelloController
     public String hello(ModelMap model){
         List<User>users = userService.getUsers();
         User one = users.get(0);
+        //TODO  为了便于测试500错误页面，获取数据为null时跳转
+       /* if(one!=null){
+            //非法参数异常
+            throw new IllegalArgumentException();
+        }*/
         System.out.println("one = " + one);
         model.put("user",one);
         return "hello";

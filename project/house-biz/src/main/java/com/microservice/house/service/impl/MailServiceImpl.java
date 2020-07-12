@@ -18,9 +18,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
+//-------------------------------------------------------------注册邮件发送-------------------------------------------------------------------
 @Service
 public class MailServiceImpl implements MailService {
 
+    //------------------------------------------------------------本地缓存（guvav cache对象）--------------------------------------------------------------------
     //本地缓存（guava cache对象）
     /*
      *最大存储的空间 maximumSize(100)，超过这个数字会进行剔除
@@ -38,6 +40,7 @@ public class MailServiceImpl implements MailService {
                 }
             }).build();
 
+    //--------------------------------------------------------------------------------------------------------------------------------
     @Autowired
     private JavaMailSender mailSender;
 
@@ -51,16 +54,18 @@ public class MailServiceImpl implements MailService {
     @Value("${domain.name}")
     private String domain;
 
+    //--------------------------------------------------------------------------------------------------------------------------------
     @Override
     public void sendMail(String title, String url, String email) {
         SimpleMailMessage message=new SimpleMailMessage();
-
         message.setFrom(from);
+        message.setSubject(title);
         message.setTo(email);
         message.setText(url);
         mailSender.send(message);
     }
 
+    //--------------------------------------------------------------------------------------------------------------------------------
     /*
      * 1:缓存key-email的关系
      * 2：借助spring email发送邮件
@@ -78,17 +83,19 @@ public class MailServiceImpl implements MailService {
         sendMail("#激活邮件",url,email);
     }
 
+    //--------------------------------------------------------------------------------------------------------------------------------
     @Override
     public boolean enable(String key) {
+        //通过key获取缓存中的value
         String email=registerCache.getIfPresent(key);
+        //isBlank一次性进行三次校验，a:是否为空，b:是否为"",c:是否为"   "
         if(StringUtils.isBlank(email)){
             return false;
         }
-        User updateUser=new User();
-        updateUser.setEmail(email);
-        updateUser.setEnable(1);
-        userMapper.update(updateUser);
-        registerCache.invalidate(key);
+        userMapper.update(userMapper.selectEmailUser(email));
+        System.out.println("userMapper = " + userMapper.selectEmailUser(email));
+        //解除绑定关系
+        //registerCache.invalidate(key);
         return true;
     }
 }

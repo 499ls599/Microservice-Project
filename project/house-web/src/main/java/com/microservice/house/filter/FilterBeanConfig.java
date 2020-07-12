@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//---------------------------------------------------------------------------------------------
 @Configuration
 public class FilterBeanConfig {
 
@@ -19,7 +19,7 @@ public class FilterBeanConfig {
      * @ Author        :  1910959369@qq.com
      * @ CreateDate    :  2020/7/3 18:38
      */
-
+    //---------------------------------------------------------------------------------------------
     //加上@Bean注解，SpringBoot会将返回对象识别成一个SpirngBean
     @Bean
     public FilterRegistrationBean logFilter(){

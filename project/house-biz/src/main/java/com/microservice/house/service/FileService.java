@@ -14,6 +14,6 @@ import java.util.List;
 
 
 public interface FileService {
-
+    //---------------------------------------------------------------------------------------------
     public List<String>getImgPath(List<MultipartFile>files);
 }

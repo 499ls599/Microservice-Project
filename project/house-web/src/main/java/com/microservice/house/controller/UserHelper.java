@@ -4,8 +4,10 @@ import com.microservice.house.common.model.User;
 import com.microservice.house.common.result.ResultMsg;
 import org.apache.commons.lang3.StringUtils;
 
+//---------------------------------------------------------------------------------------------
 public class UserHelper {
 
+    //---------------------------------------------------------------------------------------------
     public static ResultMsg validata(User account){
         if(StringUtils.isBlank(account.getEmail())){
             return  ResultMsg.errorMsg("Email 有误");

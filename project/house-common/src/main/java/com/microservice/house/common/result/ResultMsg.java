@@ -12,10 +12,10 @@ import java.util.Map;
  * @ Author        :  1910959369@qq.com
  * @ CreateDate    :  2020/7/5 14:17
  */
-
+//---------------------------------------------------------------------------------------------
 @Data
 public class ResultMsg {
-
+    //---------------------------------------------------------------------------------------------
     public static final String errorMsgKey="errorMsg";
 
     public static final String successMsgKey="successMsg";
@@ -24,23 +24,27 @@ public class ResultMsg {
 
     private String successMsg;
 
+    //---------------------------------------------------------------------------------------------
     //是否成功
     public boolean isSuccess(){
         return  errorMsg==null;
     }
 
+    //---------------------------------------------------------------------------------------------
     public static ResultMsg errorMsg(String msg){
         ResultMsg resultMsg=new ResultMsg();
         resultMsg.setErrorMsg(msg);
         return resultMsg;
     }
 
+    //---------------------------------------------------------------------------------------------
     public static ResultMsg successMsg(String msg){
         ResultMsg resultMsg=new ResultMsg();
         resultMsg.setSuccessMsg(msg);
         return resultMsg;
     }
 
+    //---------------------------------------------------------------------------------------------
     public Map<String,String>asMap(){
         Map<String,String>map= Maps.newHashMap();
         map.put(successMsgKey,successMsg);
@@ -48,6 +52,7 @@ public class ResultMsg {
         return map;
     }
 
+    //---------------------------------------------------------------------------------------------
     //TODO  需要理解
     public String asUrlParams(){
         Map<String,String>map=asMap();

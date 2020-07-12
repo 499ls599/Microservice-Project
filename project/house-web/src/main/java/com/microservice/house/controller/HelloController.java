@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+//---------------------------------------------------------------------------------------------
 @Controller
 public class HelloController
 {
-
+    //---------------------------------------------------------------------------------------------
     @Autowired
     private UserService userService;
 
+    //---------------------------------------------------------------------------------------------
     @RequestMapping("hello")
     public String hello(ModelMap model){
         List<User>users = userService.getUsers();
@@ -30,6 +32,7 @@ public class HelloController
         return "hello";
     }
 
+    //---------------------------------------------------------------------------------------------
     @RequestMapping("index")
     public String index(){
         return "homepage/index";

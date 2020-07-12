@@ -14,13 +14,15 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass({HttpClient.class})
 @EnableConfigurationProperties(HttpClientProperties.class)
 public class HttpClientAutoConfiguration {
-
+    //---------------------------------------------------------------------------------------------
     private final HttpClientProperties properties;
 
+    //---------------------------------------------------------------------------------------------
     public HttpClientAutoConfiguration(HttpClientProperties properties){
         this.properties = properties;
     }
 
+    //---------------------------------------------------------------------------------------------
     @Bean
     @ConditionalOnMissingBean(HttpClient.class)
     public HttpClient httpClient(){
